@@ -114,7 +114,6 @@ jobs:
           command: |
             export PATH=/istio/bin:$PATH
             WAIT_TIMEOUT=10m bin/install.sh install_crds
-
       - run: 
           command: |
             export PATH=/istio/bin:$PATH
@@ -123,6 +122,10 @@ jobs:
           command: |
             export PATH=/istio/bin:$PATH
             WAIT_TIMEOUT=10m bin/install.sh install_control
+      - run:
+          command: |
+            export PATH=/istio/bin:$PATH
+            WAIT_TIMEOUT=10m bin/install.sh install_ingress
       - run:
           command: |
             mkdir -p $GOPATH/src/istio.io/
