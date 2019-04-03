@@ -66,15 +66,14 @@ function install_control() {
 
 function install_ingress() {
     kubectl delete namespace istio-ingress --wait --ignore-not-found
-    echo "Installing pilot.."
-    bin/iop istio-ingress istio-discovery $IBASE/istio-control/istio-discovery
+    #echo "Installing pilot.."
+    #bin/iop istio-ingress istio-discovery $IBASE/istio-control/istio-discovery
     echo "Installing ingress.."
     bin/iop istio-ingress istio-ingress $IBASE/gateways/istio-ingress  --set global.istioNamespace=istio-control
 
     kubectl get deployments -n istio-ingress
-    kubectl wait deployments ingressgateway  istio-pilot -n istio-ingress --for=condition=available --timeout=$WAIT_TIMEOUT
-    kubectl rollout status  deployment ingressgateway -n istio-ingress --timeout=$WAIT_TIMEOUT
-    kubectl rollout status  deployment  istio-pilot -n istio-ingress --timeout=$WAIT_TIMEOUT
+    kubectl wait deployments ingressgateway -n istio-ingress --for=condition=available --timeout=$WAIT_TIMEOUT
+    kubectl rollout status deployment ingressgateway -n istio-ingress --timeout=$WAIT_TIMEOUT
     kubectl get deployments -n istio-ingress
     kubectl get pod -n istio-ingress
 }
