@@ -159,5 +159,5 @@ workflows:
 
   all:
     jobs:
-      - install-minikube
+#      - install-minikube
       - modular-installation
