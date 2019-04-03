@@ -116,8 +116,8 @@ deploymentLabels:
 # Resources for a small pilot install
 resources:
   requests:
-    cpu: 500m
-    memory: 2048Mi
+    cpu: 100m
+    memory: 64Mi
 
 # TODO: remove this, only used for testing, need real config
 env:
