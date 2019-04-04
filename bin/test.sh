@@ -15,7 +15,7 @@
 # limitations under the License.
 
 ISTIO_PATH="$1"
-if [ -z "$ISTIO_PATH"]; then
+if [ -z "$ISTIO_PATH" ]; then
     echo "Usage: test.sh <istio-directory>"
     exit 1
 fi

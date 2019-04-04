@@ -46,13 +46,13 @@ data:
         - "-d"
         - {{ "\"[[ excludeInboundPort (annotation .ObjectMeta `status.sidecar.istio.io/port` " }} {{ .Values.global.proxy.statusPort }} {{ ") (annotation .ObjectMeta `traffic.sidecar.istio.io/excludeInboundPorts` " }} "{{ .Values.global.proxy.excludeInboundPorts }}" {{ ") ]]\"" }}
         imagePullPolicy: {{ .Values.global.imagePullPolicy }}
-        resources:
-          requests:
-            cpu: 10m
-            memory: 10Mi
-          limits:
-            cpu: 100m
-            memory: 50Mi
+        resources: {}
+          # requests:
+          #   cpu: 10m
+          #   memory: 10Mi
+          # limits:
+          #   cpu: 100m
+          #   memory: 50Mi
         securityContext:
           capabilities:
             add:
