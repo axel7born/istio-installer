@@ -87,7 +87,7 @@ function startMinikubeNone() {
     fi
 
     sudo -E minikube start \
-         --kubernetes-version=v1.9.0 \
+         --kubernetes-version=v1.10.0 \
          --vm-driver=none \
          --extra-config=apiserver.Admission.PluginNames="NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota"
     sudo -E minikube update-context
