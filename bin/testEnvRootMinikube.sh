@@ -90,7 +90,7 @@ function startMinikubeNone() {
     sudo -E minikube start \
          --kubernetes-version=v1.14.0 \
          --vm-driver=none \
-         --extra-config=apiserver.Admission.PluginNames="NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota"
+         --extra-config=apiserver.enable-admission-plugins="NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota"
     sudo -E minikube update-context
     sudo chown -R "$(id -u)" "$KUBECONFIG" "$HOME/.minikube"
 }
