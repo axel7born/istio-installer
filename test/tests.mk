@@ -134,3 +134,15 @@ run-prometheus-operator-config-test: PROM_OPTS="--set prometheus.createPrometheu
 run-prometheus-operator-config-test: install-prometheus-operator install-prometheus-operator-config
 	if [ "$$(kubectl -n ${ISTIO_NS} get servicemonitors -o name | wc -l)" -ne "7" ]; then echo "Failure to find ServiceMonitor resouces!"; return 1; fi
 	kubectl -n ${ISTIO_NS} wait deploy/prometheus --for=condition=available --timeout=${WAIT_TIMEOUT}
+
+run-minimal-test:
+	mkdir -p ${GOPATH}/out/logs ${GOPATH}/out/tmp
+	$(MAKE) install-base ENABLE_NAMESPACES_BY_DEFAULT=false
+	(set -o pipefail; cd ${GOPATH}/src/istio.io/istio; \
+		go test ./tests/integration/echo/ \
+			-istio.test.env kube \
+			-istio.test.kube.config=${KUBECONFIG} \
+			-istio.test.nocleanup \
+			-istio.test.kube.deploy=0 \
+			-istio.test.kube.configNamespace=istio-control \
+			-v)
