@@ -5,9 +5,7 @@
 
 INSTALL_OPTS="--set global.istioNamespace=${ISTIO_NS} --set global.configNamespace=${ISTIO_NS} --set global.telemetryNamespace=${ISTIO_NS} --set global.policyNamespace=${ISTIO_NS}"
 
-ifneq (${ENABLE_NAMESPACES_BY_DEFAULT}, false)
-ENABLE_NAMESPACES_BY_DEFAULT=true
-endif
+ENABLE_NAMESPACES_BY_DEFAULT ?= true
 
 # Verify each component can be generated. Create pre-processed yaml files with the defaults.
 # TODO: minimize 'ifs' in templates, and generate alternative files for cases we can't remove. The output could be
